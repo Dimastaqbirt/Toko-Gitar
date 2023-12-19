@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toko_gitar_flutter/Components/custom_surfix_icon.dart';
+import 'package:toko_gitar_flutter/Components/default_button_custome_color.dart';
 import 'package:toko_gitar_flutter/size_config.dart';
 import 'package:toko_gitar_flutter/utils/constants.dart';
 
@@ -36,9 +37,28 @@ class _SignInform extends State<SignInform> {
                     setState(() {
                       remeber = value;
                     });
-                  })
+                  }),
+                  Text("Tetap Masuk"),
+                  Spacer(),
+                  GestureDetector(
+                    onTap: (){},
+                    child: Text("Lupa Password", style: TextStyle(decoration: TextDecoration.underline),
+                    ),
+                  )
             ],
-          )
+          ),
+          DefaultButtonCustomeColor(
+            color: kPrimaryColor,
+            text: "MASUK",
+            press: (){},
+          ),
+          SizedBox(height: 20,
+          ),
+          GestureDetector(
+                    onTap: (){},
+                    child: Text("Belum Punya Akun? Daftar Disini", style: TextStyle(decoration: TextDecoration.underline),
+                    ),
+                  )
         ],
       ),
     );

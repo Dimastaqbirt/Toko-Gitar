@@ -38,34 +38,38 @@ class _SignInform extends State<SignInform> {
                       remeber = value;
                     });
                   }),
-                  Text("Tetap Masuk"),
-                  Spacer(),
-                  GestureDetector(
-                    onTap: (){},
-                    child: Text("Lupa Password", style: TextStyle(decoration: TextDecoration.underline),
-                    ),
-                  )
+              Text("Tetap Masuk"),
+              Spacer(),
+              GestureDetector(
+                onTap: () {},
+                child: Text(
+                  "Lupa Password",
+                  style: TextStyle(decoration: TextDecoration.underline),
+                ),
+              )
             ],
           ),
           DefaultButtonCustomeColor(
             color: kPrimaryColor,
             text: "MASUK",
-            press: (){},
+            press: () {},
           ),
-          SizedBox(height: 20,
+          SizedBox(
+            height: 20,
           ),
           GestureDetector(
-                    onTap: (){},
-                    child: Text("Belum Punya Akun? Daftar Disini", style: TextStyle(decoration: TextDecoration.underline),
-                    ),
-                  )
+            onTap: () {},
+            child: Text(
+              "Belum Punya Akun? Daftar Disini",
+              style: TextStyle(decoration: TextDecoration.underline),
+            ),
+          )
         ],
       ),
     );
   }
 
   TextFormField buildUserName() {
-    var focusNode;
     return TextFormField(
       controller: txtUserName,
       keyboardType: TextInputType.text,

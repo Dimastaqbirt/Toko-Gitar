@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:toko_gitar_flutter/Components/Login/LoginComponent.dart';
+import 'package:toko_gitar_flutter/Components/Register/RegisterComponent.dart';
 import 'package:toko_gitar_flutter/size_config.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -13,7 +13,7 @@ class RegisterScreen extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
       ),
-      // body: LoginComponent(),
+      body: RegistrasiComponent(),
     );
   }
 }

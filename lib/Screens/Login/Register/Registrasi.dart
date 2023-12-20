@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:toko_gitar_flutter/Components/Login/LoginComponent.dart';
+// import 'package:toko_gitar_flutter/Components/Login/LoginComponent.dart';
 import 'package:toko_gitar_flutter/size_config.dart';
 
-class LoginScreen extends StatelessWidget {
-  static String routeName = "/sign_in";
+class RegisterScreen extends StatelessWidget {
+  static String routeName = "/sign_up";
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class LoginScreen extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
       ),
-      body: LoginComponent(),
+      // body: LoginComponent(),
     );
   }
 }

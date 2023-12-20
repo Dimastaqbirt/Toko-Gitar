@@ -7,7 +7,7 @@ void main() async {
   runApp(MaterialApp(
     title: "Toko Gitar Keren",
     theme: theme(),
-    initialRoute: Loginscreen.routeName,
+    initialRoute: LoginScreen.routeName,
     routes: routes,
   ));
 }

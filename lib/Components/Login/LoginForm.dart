@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toko_gitar_flutter/Components/custom_surfix_icon.dart';
 import 'package:toko_gitar_flutter/Components/default_button_custome_color.dart';
+import 'package:toko_gitar_flutter/Screens/Login/Register/Registrasi.dart';
 import 'package:toko_gitar_flutter/size_config.dart';
 import 'package:toko_gitar_flutter/utils/constants.dart';
 
@@ -58,7 +59,9 @@ class _SignInform extends State<SignInform> {
             height: 20,
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, RegisterScreen.routeName);
+            },
             child: Text(
               "Belum Punya Akun? Daftar Disini",
               style: TextStyle(decoration: TextDecoration.underline),

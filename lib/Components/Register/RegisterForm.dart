@@ -6,7 +6,7 @@ import 'package:toko_gitar_flutter/API/configAPI.dart';
 import 'package:toko_gitar_flutter/Components/custom_surfix_icon.dart';
 import 'package:toko_gitar_flutter/Components/default_button_custome_color.dart';
 import 'package:toko_gitar_flutter/Screens/Login/LoginScreens.dart';
-import 'package:toko_gitar_flutter/Screens/Login/Register/Registrasi.dart';
+import 'package:toko_gitar_flutter/Screens/Register/Registrasi.dart';
 import 'package:toko_gitar_flutter/size_config.dart';
 import 'package:toko_gitar_flutter/utils/constants.dart';
 

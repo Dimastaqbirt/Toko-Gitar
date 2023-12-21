@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:toko_gitar_flutter/API/configAPI.dart';
 import 'package:toko_gitar_flutter/Components/custom_surfix_icon.dart';
 import 'package:toko_gitar_flutter/Components/default_button_custome_color.dart';
-import 'package:toko_gitar_flutter/Screens/Login/Register/Registrasi.dart';
+import 'package:toko_gitar_flutter/Screens/Register/Registrasi.dart';
+import 'package:toko_gitar_flutter/Screens/User/HomeUserScreens.dart';
 import 'package:toko_gitar_flutter/size_config.dart';
 import 'package:toko_gitar_flutter/utils/constants.dart';
 
@@ -121,6 +122,7 @@ class _SignInform extends State<SignInform> {
         // Menampilkan loading
         utilsApps.showDialog(context);
       });
+      var dataUser;
 
       response = await dio.post(urlLogin, data: {
         "username": userName,
@@ -141,12 +143,16 @@ class _SignInform extends State<SignInform> {
           animType: AnimType.rightSlide,
           title: 'Selamat',
           desc: 'Anda Berhasil Login',
-          // btnCancelOnPress: () {},
           btnOkOnPress: () {
             utilsApps.hideLoading(context);
+            dataUser = response!.data['data'];
+            if (dataUser['role'] == 1) {
+              // print('user');
+            Navigator.pushNamed(context, HomeUserScreen.routeName);
 
-            //kembali ke halaman login
-            // Navigator.pushNamed(context, LoginScreen.routeName);
+            } else {
+              print('admin');
+            }
           },
         )..show();
       } else {

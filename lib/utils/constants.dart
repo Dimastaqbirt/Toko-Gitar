@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
 
 import '../size_config.dart';
+
+ProgressDialog? pr;
 
 const kPrimaryColor = Color(0xFF1DB9C3);
 const kSecondaryColor = Color(0xFF398AB9);
@@ -48,7 +51,7 @@ const defaultDuration = Duration(milliseconds: 250);
 
 // Form Error
 final RegExp emailValidatorRegExp =
-RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+    RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 const String kUsernameNullError = "Please Enter your username";
 const String kKategoryNullError = "Please Enter your category";
 const String kJudulBahanyNullError = "Judul bahan ajar tidak boleh kosong";
@@ -67,7 +70,7 @@ const String kAddressNullError = "Please Enter your address";
 final otpInputDecoration = InputDecoration(
   fillColor: kPrimaryColor,
   contentPadding:
-  EdgeInsets.symmetric(vertical: getProportionateScreenWidth(15)),
+      EdgeInsets.symmetric(vertical: getProportionateScreenWidth(15)),
   border: outlineInputBorder(),
   focusedBorder: outlineInputBorder(),
   enabledBorder: outlineInputBorder(),
@@ -244,4 +247,20 @@ class HexColor extends Color {
 class AlwaysDisabledFocusNode extends FocusNode {
   @override
   bool get hasFocus => false;
+}
+
+// ignore: camel_case_types
+class utilsApps {
+  static void showDialog(BuildContext context) {
+    pr = ProgressDialog(context);
+    pr!.show();
+  }
+  static void hideLoading(BuildContext context) {
+    pr = ProgressDialog(context);
+    pr?.hide();
+  }
+
+  static void showLoading(BuildContext context) {}
+
+  
 }

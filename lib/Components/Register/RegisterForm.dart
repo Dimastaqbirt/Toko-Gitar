@@ -1,5 +1,4 @@
-
-
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -38,8 +37,6 @@ class _SignUpform extends State<SignUpform> {
   void initState() {
     super.initState();
     // prosesRegistrasi();
-  Response? response;
-
   }
 
   @override
@@ -63,11 +60,8 @@ class _SignUpform extends State<SignUpform> {
               print(txtUserName.text);
               print(txtPassword.text);
               print(txtEmail.text);
-              prosesRegistrasi(
-                  txtUserName.text,
-  txtPassword.text,
-  txtNamaLengkap.text,
-  txtEmail.text);
+              prosesRegistrasi(txtUserName.text, txtPassword.text,
+                  txtNamaLengkap.text, txtEmail.text);
             }),
         SizedBox(
           height: 20,
@@ -152,19 +146,64 @@ class _SignUpform extends State<SignUpform> {
     );
   }
 
-  void prosesRegistrasi(userName, password, nama, email) async {
-  try {
-    response = await dio.post(urlRegister, data: {
-      "username": userName,
-      "password": password,
-      "nama": nama,
-      "email": email,
-    });
-    print(response!.data);
-    // Handle respons sesuai kebutuhan aplikasi Anda
-  } catch (e) {
-    print("Error during registration: $e");
+    void prosesRegistrasi(userName, password, nama, email) async {
+    try {
+      // Menampilkan loading
+      // utilsApps.showDialog(context);
+
+      response = await dio.post(urlRegister, data: {
+        "username": userName,
+        "password": password,
+        "nama": nama,
+        "email": email,
+      });
+
+      // Menyembunyikan loading setelah mendapatkan respons
+      utilsApps.hideLoading(context);
+
+      // Memeriksa respons dari server
+      bool status = response!.data['sukses'];
+      String msg = response!.data['msg'];
+
+      if (status) {
+      // utilsApps.hideDialog(context);
+        
+        AwesomeDialog(
+          context: context,
+          dialogType: DialogType.success,
+          animType: AnimType.rightSlide,
+          title: 'Selamat',
+          desc: 'Anda Berhasil Registrasi',
+          btnCancelOnPress: () {},
+          btnOkOnPress: () {},
+        )..show();
+      } else {
+      // utilsApps.hideDialog(context);
+
+        AwesomeDialog(
+          context: context,
+          dialogType: DialogType.error,
+          animType: AnimType.rightSlide,
+          title: 'Peringatan',
+          desc: 'Gagal Registrasi  $msg',
+          btnCancelOnPress: () {},
+          btnOkOnPress: () {},
+        )..show();
+      }
+    } catch (e) {
+      // Menyembunyikan loading jika terjadi kesalahan
+      // utilsApps.hideDialog(context);
+
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.error,
+        animType: AnimType.rightSlide,
+        title: 'Peringatan',
+        desc: 'Terjadi Kesalahan Pada Server',
+        btnCancelOnPress: () {},
+        btnOkOnPress: () {},
+      )..show();
+    }
   }
-}
 
 }

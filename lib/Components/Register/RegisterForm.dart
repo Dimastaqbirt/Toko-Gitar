@@ -1,4 +1,9 @@
+
+
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:toko_gitar_flutter/API/configAPI.dart';
 import 'package:toko_gitar_flutter/Components/custom_surfix_icon.dart';
 import 'package:toko_gitar_flutter/Components/default_button_custome_color.dart';
 import 'package:toko_gitar_flutter/Screens/Login/LoginScreens.dart';
@@ -26,9 +31,15 @@ class _SignUpform extends State<SignUpform> {
 
   FocusNode focusNode = new FocusNode();
 
+  Response? response;
+  final dio = Dio();
+
   @override
   void initState() {
     super.initState();
+    // prosesRegistrasi();
+  Response? response;
+
   }
 
   @override
@@ -45,10 +56,19 @@ class _SignUpform extends State<SignUpform> {
         buildPassword(),
         SizedBox(height: getProportionateScreenHeight(30)),
         DefaultButtonCustomeColor(
-          color: kPrimaryColor,
-          text: "Register",
-          press: () {},
-        ),
+            color: kPrimaryColor,
+            text: "Register",
+            press: () {
+              print(txtNamaLengkap.text);
+              print(txtUserName.text);
+              print(txtPassword.text);
+              print(txtEmail.text);
+              prosesRegistrasi(
+                  txtUserName.text,
+  txtPassword.text,
+  txtNamaLengkap.text,
+  txtEmail.text);
+            }),
         SizedBox(
           height: 20,
         ),
@@ -56,17 +76,16 @@ class _SignUpform extends State<SignUpform> {
           onTap: () {
             Navigator.pushNamed(context, LoginScreen.routeName);
           },
-        child: Text(
-          "Sudah Punya Akun? Masuk Disini",
-          style: TextStyle(decoration: TextDecoration.underline),
-        ),
+          child: Text(
+            "Sudah Punya Akun? Masuk Disini",
+            style: TextStyle(decoration: TextDecoration.underline),
+          ),
         )
       ],
     ));
-    
   }
 
-    TextFormField buildNamaLengkap() {
+  TextFormField buildNamaLengkap() {
     return TextFormField(
       controller: txtNamaLengkap,
       style: mTitleStyle,
@@ -133,5 +152,19 @@ class _SignUpform extends State<SignUpform> {
     );
   }
 
+  void prosesRegistrasi(userName, password, nama, email) async {
+  try {
+    response = await dio.post(urlRegister, data: {
+      "username": userName,
+      "password": password,
+      "nama": nama,
+      "email": email,
+    });
+    print(response!.data);
+    // Handle respons sesuai kebutuhan aplikasi Anda
+  } catch (e) {
+    print("Error during registration: $e");
+  }
+}
 
 }

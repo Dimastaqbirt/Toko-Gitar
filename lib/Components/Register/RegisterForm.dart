@@ -146,10 +146,17 @@ class _SignUpform extends State<SignUpform> {
     );
   }
 
+
+
+
     void prosesRegistrasi(userName, password, nama, email) async {
     try {
+
+      setState(() {
       // Menampilkan loading
-      // utilsApps.showDialog(context);
+      utilsApps.showDialog(context);
+        
+      });
 
       response = await dio.post(urlRegister, data: {
         "username": userName,
@@ -166,7 +173,6 @@ class _SignUpform extends State<SignUpform> {
       String msg = response!.data['msg'];
 
       if (status) {
-      // utilsApps.hideDialog(context);
         
         AwesomeDialog(
           context: context,
@@ -174,11 +180,13 @@ class _SignUpform extends State<SignUpform> {
           animType: AnimType.rightSlide,
           title: 'Selamat',
           desc: 'Anda Berhasil Registrasi',
-          btnCancelOnPress: () {},
-          btnOkOnPress: () {},
+          // btnCancelOnPress: () {},
+          btnOkOnPress: () {
+      utilsApps.hideLoading(context);
+
+          },
         )..show();
       } else {
-      // utilsApps.hideDialog(context);
 
         AwesomeDialog(
           context: context,
@@ -186,13 +194,15 @@ class _SignUpform extends State<SignUpform> {
           animType: AnimType.rightSlide,
           title: 'Peringatan',
           desc: 'Gagal Registrasi  $msg',
-          btnCancelOnPress: () {},
-          btnOkOnPress: () {},
+          // btnCancelOnPress: () {},
+          btnOkOnPress: () {
+      utilsApps.hideLoading(context);
+
+          },
         )..show();
       }
     } catch (e) {
       // Menyembunyikan loading jika terjadi kesalahan
-      // utilsApps.hideDialog(context);
 
       AwesomeDialog(
         context: context,
@@ -200,8 +210,10 @@ class _SignUpform extends State<SignUpform> {
         animType: AnimType.rightSlide,
         title: 'Peringatan',
         desc: 'Terjadi Kesalahan Pada Server',
-        btnCancelOnPress: () {},
-        btnOkOnPress: () {},
+        // btnCancelOnPress: () {},
+        btnOkOnPress: () {
+      utilsApps.hideLoading(context);
+        },
       )..show();
     }
   }

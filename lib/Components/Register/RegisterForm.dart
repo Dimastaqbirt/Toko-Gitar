@@ -56,10 +56,6 @@ class _SignUpform extends State<SignUpform> {
             color: kPrimaryColor,
             text: "Register",
             press: () {
-              print(txtNamaLengkap.text);
-              print(txtUserName.text);
-              print(txtPassword.text);
-              print(txtEmail.text);
               prosesRegistrasi(txtUserName.text, txtPassword.text,
                   txtNamaLengkap.text, txtEmail.text);
             }),
@@ -146,16 +142,11 @@ class _SignUpform extends State<SignUpform> {
     );
   }
 
-
-
-
-    void prosesRegistrasi(userName, password, nama, email) async {
+  void prosesRegistrasi(userName, password, nama, email) async {
     try {
-
       setState(() {
-      // Menampilkan loading
-      utilsApps.showDialog(context);
-        
+        // Menampilkan loading
+        utilsApps.showDialog(context);
       });
 
       response = await dio.post(urlRegister, data: {
@@ -173,7 +164,6 @@ class _SignUpform extends State<SignUpform> {
       String msg = response!.data['msg'];
 
       if (status) {
-        
         AwesomeDialog(
           context: context,
           dialogType: DialogType.success,
@@ -182,12 +172,13 @@ class _SignUpform extends State<SignUpform> {
           desc: 'Anda Berhasil Registrasi',
           // btnCancelOnPress: () {},
           btnOkOnPress: () {
-      utilsApps.hideLoading(context);
+            utilsApps.hideLoading(context);
 
+            //kembali ke halaman login
+            Navigator.pushNamed(context, LoginScreen.routeName);
           },
         )..show();
       } else {
-
         AwesomeDialog(
           context: context,
           dialogType: DialogType.error,
@@ -196,8 +187,7 @@ class _SignUpform extends State<SignUpform> {
           desc: 'Gagal Registrasi  $msg',
           // btnCancelOnPress: () {},
           btnOkOnPress: () {
-      utilsApps.hideLoading(context);
-
+            utilsApps.hideLoading(context);
           },
         )..show();
       }
@@ -212,10 +202,9 @@ class _SignUpform extends State<SignUpform> {
         desc: 'Terjadi Kesalahan Pada Server',
         // btnCancelOnPress: () {},
         btnOkOnPress: () {
-      utilsApps.hideLoading(context);
+          utilsApps.hideLoading(context);
         },
       )..show();
     }
   }
-
 }
